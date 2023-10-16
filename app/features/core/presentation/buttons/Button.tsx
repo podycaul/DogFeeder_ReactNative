@@ -27,7 +27,11 @@ const makeStyles = ({ colors }: any) =>
     },
   });
 
-const Button: React.FC<IButtonProps> = ({ style, text, onPress }) => {
+const ActionButton: React.FC<IActionButtonProps> = ({
+  style,
+  text,
+  onPress,
+}) => {
   const theme = useTheme();
   const internalStyle = makeStyles(theme);
 
@@ -38,9 +42,9 @@ const Button: React.FC<IButtonProps> = ({ style, text, onPress }) => {
   );
 };
 
-export default Button;
+export default ActionButton;
 
-interface IButtonProps {
+interface IActionButtonProps {
   style?: object;
   text: string;
   onPress: (event: GestureResponderEvent) => void;

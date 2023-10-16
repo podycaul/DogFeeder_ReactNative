@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   View,
   ActivityIndicator,
@@ -8,7 +8,7 @@ import {
 import RegistrationForm, {
   DogRegistrationFormValues,
 } from "../forms/RegistrationForm";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import useDogRegistrationStorage from "../../hooks/useDogRegistrationStorage";
 import * as Screens from "../../../../features/core/helpers/Screens";
 
@@ -30,13 +30,23 @@ const styles = StyleSheet.create({
 
 const DogRegistrationScreen: React.FC<IDogRegistrationScreenProps> = () => {
   const navigation = useNavigation();
-  const { loading, saveDog } = useDogRegistrationStorage();
+  const route = useRoute();
+  const { loading, saveDog, updateDog } = useDogRegistrationStorage();
 
   const handleDogRegistration = async (data: DogRegistrationFormValues) => {
-    const dog = await saveDog({
-      name: data.dogName,
-      foodScoops: data.scoopCount,
-    });
+    let dog;
+    if (route.params?.dogID) {
+      dog = await updateDog({
+        id: data.id,
+        foodScoops: data.scoopCount,
+        name: data.dogName,
+      });
+    } else {
+      dog = await saveDog({
+        name: data.dogName,
+        foodScoops: data.scoopCount,
+      });
+    }
     // TODO: abstract this android specific toast
     if (dog === null)
       ToastAndroid.show("Failed to save dog!", ToastAndroid.SHORT);
@@ -50,7 +60,10 @@ const DogRegistrationScreen: React.FC<IDogRegistrationScreenProps> = () => {
           <ActivityIndicator size="large" />
         </View>
       ) : (
-        <RegistrationForm onSubmit={handleDogRegistration} />
+        <RegistrationForm
+          onSubmit={handleDogRegistration}
+          dogID={route.params?.dogID}
+        />
       )}
     </View>
   );
