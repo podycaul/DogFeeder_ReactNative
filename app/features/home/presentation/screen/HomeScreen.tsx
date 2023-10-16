@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
-import ActionButton from "../../../core/presentation/buttons/ActionButton";
+import Button from "../../../core/presentation/buttons/Button";
 import * as Screens from "../../../core/helpers/Screens";
 import { useNavigation } from "@react-navigation/native";
 
@@ -20,13 +20,13 @@ const HomeScreen: React.FC<IHomeScreenProps> = () => {
 
   return (
     <View style={styles.container}>
-      <ActionButton
+      <Button
         text="Add a dog"
         onPress={() =>
           navigation.navigate(Screens.DogRegistrationScreen as never)
         }
       />
-      <ActionButton
+      <Button
         text="Feed the puppers"
         onPress={() => navigation.navigate(Screens.DogFeedScreen as never)}
       />
