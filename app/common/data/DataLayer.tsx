@@ -5,6 +5,11 @@ const MIGRATIONS = [DogRegistration__1];
 
 export const sqliteClient = new SQLiteClient("db.dog_feeder", MIGRATIONS);
 
-export const initialize = async (): Promise<void> => {
+export const initialize = async (reset?: boolean): Promise<void> => {
   await sqliteClient.connect();
+
+  if (reset === true) {
+    sqliteClient.db?.closeAsync();
+    await sqliteClient.db?.deleteAsync();
+  }
 };

@@ -6,8 +6,8 @@ import HomeScreen from "./app/features/home/presentation/screen/HomeScreen";
 import FeedScreen from "./app/features/feed/presentation/screen/FeedScreen";
 import * as Screens from "./app/features/core/helpers/Screens";
 import DogRegistrationScreen from "./app/features/dog_registration/presentation/screen/DogRegistrationScreen";
-import LightTheme from "./theme";
 import { initialize } from "./app/common/data/DataLayer";
+import LightTheme from "./Theme";
 
 const Stack = createNativeStackNavigator();
 

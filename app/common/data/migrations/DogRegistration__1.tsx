@@ -5,6 +5,7 @@ const DogRegistration__1: IMigration = async (
   tx: SQLite.SQLTransactionAsync
 ) => {
   await tx.executeSqlAsync(`CREATE TABLE IF NOT EXISTS Dogs(
+        id INTEGER NOT NULL PRIMARY KEY,
         name TEXT NOT NULL,
         foodScoops NUMERIC NOT NULL
     );`);

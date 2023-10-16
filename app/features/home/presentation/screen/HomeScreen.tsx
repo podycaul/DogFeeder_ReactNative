@@ -1,15 +1,23 @@
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import Button from "../../../core/presentation/buttons/Button";
 import * as Screens from "../../../core/helpers/Screens";
 import { useNavigation } from "@react-navigation/native";
+import DogList from "../../../dog_list/presentation/widget/DogList";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+  },
+  buttonContainer: {
+    flex: 1,
+    backgroundColor: "green",
     alignItems: "center",
     justifyContent: "center",
+  },
+  dogList: {
+    height: "25%",
+    flex: 1,
   },
 });
 
@@ -20,16 +28,19 @@ const HomeScreen: React.FC<IHomeScreenProps> = () => {
 
   return (
     <View style={styles.container}>
-      <Button
-        text="Add a dog"
-        onPress={() =>
-          navigation.navigate(Screens.DogRegistrationScreen as never)
-        }
-      />
-      <Button
-        text="Feed the puppers"
-        onPress={() => navigation.navigate(Screens.DogFeedScreen as never)}
-      />
+      <DogList style={styles.dogList} headerText="My Dogs" />
+      <View style={styles.container}>
+        <Button
+          text="Add a dog"
+          onPress={() =>
+            navigation.navigate(Screens.DogRegistrationScreen as never)
+          }
+        />
+        <Button
+          text="Feed the puppers"
+          onPress={() => navigation.navigate(Screens.DogFeedScreen as never)}
+        />
+      </View>
     </View>
   );
 };
