@@ -17,7 +17,7 @@ const App: React.FC<{ children: React.ReactNode }> = () => {
   }, []);
 
   useEffect(() => {
-    initialize();
+    initializePersistence();
   }, []);
 
   return (
