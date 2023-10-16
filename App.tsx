@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useCallback } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { NativeBaseProvider } from "native-base";
@@ -7,10 +7,19 @@ import FeedScreen from "./app/features/feed/presentation/screen/FeedScreen";
 import * as Screens from "./app/features/core/helpers/Screens";
 import DogRegistrationScreen from "./app/features/dog_registration/presentation/screen/DogRegistrationScreen";
 import LightTheme from "./theme";
+import { initialize } from "./app/common/data/DataLayer";
 
 const Stack = createNativeStackNavigator();
 
 const App: React.FC<{ children: React.ReactNode }> = () => {
+  const initializePersistence = useCallback(async () => {
+    await initialize();
+  }, []);
+
+  useEffect(() => {
+    initialize();
+  }, []);
+
   return (
     <NavigationContainer theme={LightTheme}>
       <NativeBaseProvider>
