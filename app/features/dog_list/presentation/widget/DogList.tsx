@@ -21,7 +21,9 @@ const makeStyle = StyleSheet.create({
     fontSize: 30,
     textAlign: "center",
   },
-  listItem: {},
+  listItem: {
+    fontSize: 20,
+  },
 });
 
 interface IDogListProps {

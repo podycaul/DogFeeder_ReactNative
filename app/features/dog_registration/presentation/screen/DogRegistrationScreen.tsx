@@ -37,7 +37,7 @@ const DogRegistrationScreen: React.FC<IDogRegistrationScreenProps> = () => {
     let dog;
     if (route.params?.dogID) {
       dog = await updateDog({
-        id: data.id,
+        id: route.params?.dogID,
         foodScoops: data.scoopCount,
         name: data.dogName,
       });

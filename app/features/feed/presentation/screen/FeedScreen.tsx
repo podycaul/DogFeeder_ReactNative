@@ -1,10 +1,11 @@
 import React from "react";
 import { Text, View } from "react-native";
+import DogFeedList from "../widget/DogFeedList";
 
 const FeedScreen: React.FC<{}> = () => {
   return (
     <View>
-      <Text>Feed Screen</Text>
+      <DogFeedList />
     </View>
   );
 };
